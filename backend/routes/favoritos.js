@@ -1,51 +1,69 @@
 const express = require('express');
-const db = require('../database');
+const { pool } = require('../database');
 const autenticar = require('../middleware/autenticar');
 
 const router = express.Router();
 
 // GET /api/favoritos
-router.get('/', autenticar, (req, res) => {
-  const favoritos = db.prepare(`
-    SELECT a.*, u.nome AS vendedor_nome, u.curso AS vendedor_curso,
-           (SELECT caminho FROM fotos_anuncio WHERE anuncio_id = a.id ORDER BY ordem LIMIT 1) AS foto_principal,
-           f.data AS data_favoritado
-    FROM favoritos f
-    JOIN anuncios a ON f.anuncio_id = a.id
-    JOIN usuarios u ON a.usuario_id = u.id
-    WHERE f.usuario_id = ?
-    ORDER BY f.data DESC
-  `).all(req.usuarioId);
+router.get('/', autenticar, async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT a.*, u.nome AS vendedor_nome, u.curso AS vendedor_curso,
+             (SELECT caminho FROM fotos_anuncio WHERE anuncio_id = a.id ORDER BY ordem LIMIT 1) AS foto_principal,
+             f.data AS data_favoritado
+      FROM favoritos f
+      JOIN anuncios a ON f.anuncio_id = a.id
+      JOIN usuarios u ON a.usuario_id = u.id
+      WHERE f.usuario_id = $1
+      ORDER BY f.data DESC
+    `, [req.usuarioId]);
 
-  return res.json(favoritos);
+    return res.json(result.rows);
+  } catch (err) {
+    console.error('Erro ao listar favoritos:', err.message);
+    return res.status(500).json({ erro: 'Erro ao buscar favoritos' });
+  }
 });
 
 // POST /api/favoritos/:anuncioId
-router.post('/:anuncioId', autenticar, (req, res) => {
-  const anuncio = db.prepare('SELECT id FROM anuncios WHERE id = ?').get(req.params.anuncioId);
-  if (!anuncio) {
-    return res.status(404).json({ erro: 'Anúncio não encontrado' });
-  }
-
+router.post('/:anuncioId', autenticar, async (req, res) => {
   try {
-    db.prepare('INSERT INTO favoritos (usuario_id, anuncio_id) VALUES (?, ?)').run(req.usuarioId, req.params.anuncioId);
+    const anuncio = await pool.query('SELECT id FROM anuncios WHERE id = $1', [req.params.anuncioId]);
+    if (anuncio.rows.length === 0) {
+      return res.status(404).json({ erro: 'Anúncio não encontrado' });
+    }
+
+    await pool.query(
+      'INSERT INTO favoritos (usuario_id, anuncio_id) VALUES ($1, $2)',
+      [req.usuarioId, req.params.anuncioId]
+    );
     return res.status(201).json({ mensagem: 'Adicionado aos favoritos' });
   } catch (err) {
-    return res.status(409).json({ erro: 'Anúncio já está nos favoritos' });
+    if (err.code === '23505') { // unique_violation
+      return res.status(409).json({ erro: 'Anúncio já está nos favoritos' });
+    }
+    console.error('Erro ao favoritar:', err.message);
+    return res.status(500).json({ erro: 'Erro ao favoritar' });
   }
 });
 
 // DELETE /api/favoritos/:anuncioId
-router.delete('/:anuncioId', autenticar, (req, res) => {
-  const resultado = db.prepare(
-    'DELETE FROM favoritos WHERE usuario_id = ? AND anuncio_id = ?'
-  ).run(req.usuarioId, req.params.anuncioId);
+router.delete('/:anuncioId', autenticar, async (req, res) => {
+  try {
+    const result = await pool.query(
+      'DELETE FROM favoritos WHERE usuario_id = $1 AND anuncio_id = $2',
+      [req.usuarioId, req.params.anuncioId]
+    );
 
-  if (resultado.changes === 0) {
-    return res.status(404).json({ erro: 'Favorito não encontrado' });
+    if (result.rowCount === 0) {
+      return res.status(404).json({ erro: 'Favorito não encontrado' });
+    }
+
+    return res.json({ mensagem: 'Removido dos favoritos' });
+  } catch (err) {
+    console.error('Erro ao remover favorito:', err.message);
+    return res.status(500).json({ erro: 'Erro ao remover favorito' });
   }
-
-  return res.json({ mensagem: 'Removido dos favoritos' });
 });
 
 module.exports = router;
