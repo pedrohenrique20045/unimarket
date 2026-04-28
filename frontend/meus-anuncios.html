@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniMarket — Meus Anúncios</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <main class="container-xl main-content">
+    <div class="page-header">
+      <h1 class="section-title"><i class="bi bi-tag me-2 text-primary"></i>Meus Anúncios</h1>
+      <a href="/criar-anuncio.html" class="btn btn-warning fw-bold">
+        <i class="bi bi-plus-circle me-1"></i>Novo anúncio
+      </a>
+    </div>
+
+    <div id="alert-container"></div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-4" id="tabs-anuncios" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active fw-semibold" id="tab-ativos" data-bs-toggle="tab"
+                data-bs-target="#painel-ativos" type="button" role="tab">
+          <i class="bi bi-check-circle me-1 text-success"></i>
+          Ativos <span class="badge bg-success ms-1" id="count-ativos">0</span>
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link fw-semibold" id="tab-vendidos" data-bs-toggle="tab"
+                data-bs-target="#painel-vendidos" type="button" role="tab">
+          <i class="bi bi-archive me-1 text-secondary"></i>
+          Vendidos <span class="badge bg-secondary ms-1" id="count-vendidos">0</span>
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="painel-ativos" role="tabpanel">
+        <div id="lista-ativos">
+          <div class="text-center py-5"><div class="spinner-border text-primary" role="status"></div></div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="painel-vendidos" role="tabpanel">
+        <div id="lista-vendidos"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/meus-anuncios.js"></script>
+</body>
+</html>

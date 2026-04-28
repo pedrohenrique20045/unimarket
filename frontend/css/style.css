@@ -1,0 +1,410 @@
+/* =====================================================
+   UniMarket — Estilos principais
+   ===================================================== */
+
+:root {
+  --um-primary: #0d6efd;
+  --um-primary-dark: #0b5ed7;
+  --um-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  --um-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.15);
+  --um-radius: 14px;
+  --um-transition: all 0.22s ease;
+}
+
+/* ---- Base ---- */
+body {
+  background-color: #eef2f7;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.main-content {
+  margin-top: 70px;
+  padding-top: 1.5rem;
+  min-height: calc(100vh - 70px);
+}
+
+/* ---- Páginas de autenticação ---- */
+.auth-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a56db 0%, #0d6efd 40%, #0a58ca 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+}
+
+.auth-logo {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--um-primary);
+  letter-spacing: -0.5px;
+}
+
+/* ---- Cards de anúncio ---- */
+.anuncio-card {
+  border: none;
+  border-radius: var(--um-radius);
+  box-shadow: var(--um-shadow);
+  transition: var(--um-transition);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  background: white;
+}
+
+.anuncio-card:hover {
+  box-shadow: var(--um-shadow-hover);
+  transform: translateY(-5px);
+  color: inherit;
+}
+
+.anuncio-card .card-img-top {
+  height: 195px;
+  object-fit: cover;
+}
+
+.anuncio-card .card-img-placeholder {
+  height: 195px;
+  background: linear-gradient(135deg, #e9ecef, #dee2e6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: #adb5bd;
+}
+
+.anuncio-card .preco {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--um-primary);
+  letter-spacing: -0.3px;
+}
+
+/* ---- Sidebar de filtros ---- */
+.filtros-card {
+  border: none;
+  border-radius: var(--um-radius);
+  box-shadow: var(--um-shadow);
+  background: white;
+  position: sticky;
+  top: 80px;
+}
+
+.filtros-card .card-header {
+  background: transparent;
+  border-bottom: 1px solid #e9ecef;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #6c757d;
+}
+
+/* ---- Página de detalhe ---- */
+.carousel-inner {
+  border-radius: var(--um-radius);
+  overflow: hidden;
+  box-shadow: var(--um-shadow);
+}
+
+.carousel-inner img {
+  height: 420px;
+  object-fit: cover;
+  background: #e9ecef;
+}
+
+.carousel-placeholder {
+  height: 420px;
+  background: linear-gradient(135deg, #e9ecef, #dee2e6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detalhe-card {
+  border: none;
+  border-radius: var(--um-radius);
+  box-shadow: var(--um-shadow);
+  background: white;
+}
+
+.vendedor-card {
+  border: none;
+  border-radius: var(--um-radius);
+  box-shadow: var(--um-shadow);
+  background: white;
+  position: sticky;
+  top: 80px;
+}
+
+.foto-vendedor {
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--um-primary);
+}
+
+.btn-whatsapp {
+  background-color: #25d366;
+  border-color: #25d366;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  transition: var(--um-transition);
+}
+
+.btn-whatsapp:hover {
+  background-color: #1fba5a;
+  border-color: #1fba5a;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.45);
+}
+
+.btn-favoritar {
+  border-radius: 10px;
+  font-weight: 600;
+  transition: var(--um-transition);
+}
+
+.btn-favoritar.ativo {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
+/* ---- Meus anúncios ---- */
+.meu-anuncio-card {
+  border: none;
+  border-radius: var(--um-radius);
+  box-shadow: var(--um-shadow);
+  background: white;
+  transition: var(--um-transition);
+}
+
+.meu-anuncio-card:hover {
+  box-shadow: var(--um-shadow-hover);
+}
+
+.meu-anuncio-foto {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+/* ---- Upload de fotos ---- */
+.upload-area {
+  border: 2.5px dashed #0d6efd;
+  border-radius: var(--um-radius);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--um-transition);
+  background: #f0f5ff;
+}
+
+.upload-area:hover {
+  background: #deeaff;
+  border-color: #0b5ed7;
+}
+
+.upload-area i {
+  font-size: 2.8rem;
+  color: var(--um-primary);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.foto-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.foto-preview-item {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #dee2e6;
+  flex-shrink: 0;
+}
+
+.foto-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto-preview-item .btn-remover {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(220, 53, 69, 0.9);
+  border: none;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+/* ---- Perfil ---- */
+.perfil-avatar {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--um-primary);
+  box-shadow: 0 4px 16px rgba(13, 110, 253, 0.25);
+}
+
+.perfil-avatar-sm {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* ---- Estado vazio ---- */
+.empty-state {
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  color: #6c757d;
+}
+
+.empty-state i {
+  font-size: 4.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+  display: block;
+}
+
+.empty-state h5 {
+  font-weight: 700;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+/* ---- Badges de status ---- */
+.badge-ativo {
+  background-color: #d1fae5;
+  color: #065f46;
+  font-weight: 600;
+}
+
+.badge-vendido {
+  background-color: #fee2e2;
+  color: #991b1b;
+  font-weight: 600;
+}
+
+/* ---- Página section header ---- */
+.page-header {
+  background: white;
+  border-radius: var(--um-radius);
+  box-shadow: var(--um-shadow);
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.section-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin: 0;
+}
+
+/* ---- Misc ---- */
+.card-generico {
+  border: none;
+  border-radius: var(--um-radius);
+  box-shadow: var(--um-shadow);
+  background: white;
+}
+
+.text-preco {
+  color: var(--um-primary);
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.img-placeholder {
+  background: linear-gradient(135deg, #e9ecef, #dee2e6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #adb5bd;
+}
+
+/* ---- Navbar ---- */
+.navbar .nav-link {
+  transition: var(--um-transition);
+}
+
+/* ---- Responsivo ---- */
+@media (max-width: 767.98px) {
+  .carousel-inner img { height: 240px; }
+  .carousel-placeholder { height: 240px; }
+  .vendedor-card { position: static; }
+  .filtros-card { position: static; }
+  .meu-anuncio-foto { width: 72px; height: 72px; }
+  .foto-preview-item { width: 80px; height: 80px; }
+}
+
+@media (max-width: 575.98px) {
+  .auth-card { border-radius: 14px; }
+  .main-content { padding-top: 1rem; }
+}
+
+/* ---- Formulários ---- */
+.form-control, .form-select {
+  border-radius: 9px;
+  border-color: #dee2e6;
+  transition: var(--um-transition);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--um-primary);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.btn {
+  border-radius: 9px;
+  font-weight: 500;
+}
+
+.btn-primary { font-weight: 600; }
+
+.input-group-text {
+  border-radius: 9px 0 0 9px;
+  background: #f8f9fa;
+  color: #6c757d;
+}
