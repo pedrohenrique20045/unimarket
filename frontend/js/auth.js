@@ -49,8 +49,9 @@ function renderNavbar(paginaAtiva) {
   el.innerHTML = `
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow-sm">
       <div class="container-xl">
-        <a class="navbar-brand fw-bold fs-4" href="/home.html">
-          <i class="bi bi-shop-window me-1"></i>UniMarket
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/home.html">
+          <img src="/img/logo-unifan.png" class="navbar-logo" alt="UNIFAN">
+          <span class="fw-bold fs-5 brand-text">UniMarket</span>
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
           <span class="navbar-toggler-icon"></span>

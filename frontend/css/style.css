@@ -1,14 +1,28 @@
 /* =====================================================
-   UniMarket — Estilos principais
+   UniMarket — Estilos principais · Identidade UNIFAN
    ===================================================== */
 
 :root {
-  --um-primary: #0d6efd;
-  --um-primary-dark: #0b5ed7;
-  --um-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-  --um-shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.15);
+  /* Paleta UNIFAN */
+  --um-primary:        #1F2D5C;
+  --um-primary-dark:   #162244;
+  --um-secondary:      #EE7124;
+  --um-secondary-dark: #d4621d;
+  --um-success:        #25D366;
+  --um-danger:         #DC2626;
+  --um-gray-light:     #F5F5F7;
+  --um-gray-mid:       #6B7280;
+  --um-white:          #FFFFFF;
+
+  /* Override Bootstrap primary → azul UNIFAN */
+  --bs-primary:     #1F2D5C;
+  --bs-primary-rgb: 31, 45, 92;
+
+  /* Sombras */
+  --um-shadow:       0 2px 8px rgba(31, 45, 92, 0.08);
+  --um-shadow-hover: 0 8px 24px rgba(31, 45, 92, 0.18);
   --um-radius: 14px;
-  --um-transition: all 0.22s ease;
+  --um-transition: all 0.2s ease;
 }
 
 /* ---- Base ---- */
@@ -17,16 +31,63 @@ body {
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
 
+body:not(.auth-page) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .main-content {
   margin-top: 70px;
   padding-top: 1.5rem;
-  min-height: calc(100vh - 70px);
+  flex: 1;
+  min-height: calc(100vh - 70px - 100px);
+}
+
+/* ---- Override Bootstrap primary com UNIFAN ---- */
+.bg-primary { background-color: var(--um-primary) !important; }
+.text-primary { color: var(--um-primary) !important; }
+.border-primary { border-color: var(--um-primary) !important; }
+
+.btn-primary {
+  background-color: var(--um-primary);
+  border-color: var(--um-primary);
+  font-weight: 600;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: var(--um-primary-dark) !important;
+  border-color: var(--um-primary-dark) !important;
+}
+
+.btn-outline-primary {
+  color: var(--um-primary) !important;
+  border-color: var(--um-primary) !important;
+}
+.btn-outline-primary:hover {
+  background-color: var(--um-primary) !important;
+  border-color: var(--um-primary) !important;
+  color: white !important;
+}
+
+/* Botão Anunciar / warning → laranja UNIFAN */
+.btn-warning {
+  background-color: var(--um-secondary) !important;
+  border-color: var(--um-secondary) !important;
+  color: white !important;
+}
+.btn-warning:hover,
+.btn-warning:focus {
+  background-color: var(--um-secondary-dark) !important;
+  border-color: var(--um-secondary-dark) !important;
+  color: white !important;
 }
 
 /* ---- Páginas de autenticação ---- */
 .auth-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a56db 0%, #0d6efd 40%, #0a58ca 100%);
+  background: linear-gradient(135deg, #162244 0%, #1F2D5C 40%, #243468 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,19 +99,29 @@ body {
   max-width: 460px;
   border: none;
   border-radius: 20px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 8px 24px rgba(31, 45, 92, 0.15);
 }
 
 .auth-logo {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 800;
   color: var(--um-primary);
   letter-spacing: -0.5px;
 }
 
+/* Links dentro do card de auth → laranja */
+.auth-card p a {
+  color: var(--um-secondary) !important;
+  text-decoration: none;
+}
+.auth-card p a:hover {
+  color: var(--um-secondary-dark) !important;
+  text-decoration: underline;
+}
+
 /* ---- Cards de anúncio ---- */
 .anuncio-card {
-  border: none;
+  border: 1px solid rgba(31, 45, 92, 0.08);
   border-radius: var(--um-radius);
   box-shadow: var(--um-shadow);
   transition: var(--um-transition);
@@ -63,7 +134,7 @@ body {
 
 .anuncio-card:hover {
   box-shadow: var(--um-shadow-hover);
-  transform: translateY(-5px);
+  transform: translateY(-2px);
   color: inherit;
 }
 
@@ -87,6 +158,13 @@ body {
   font-weight: 800;
   color: var(--um-primary);
   letter-spacing: -0.3px;
+}
+
+/* Badge de categoria nos cards e detalhe → laranja */
+.anuncio-card .badge.bg-primary,
+.detalhe-card .badge.bg-primary {
+  background-color: rgba(238, 113, 36, 0.12) !important;
+  color: var(--um-secondary) !important;
 }
 
 /* ---- Sidebar de filtros ---- */
@@ -137,11 +215,15 @@ body {
   background: white;
 }
 
+.detalhe-card h1 {
+  color: var(--um-primary);
+}
+
 .vendedor-card {
-  border: none;
+  background: var(--um-gray-light);
+  border: 1px solid rgba(31, 45, 92, 0.3) !important;
   border-radius: var(--um-radius);
   box-shadow: var(--um-shadow);
-  background: white;
   position: sticky;
   top: 80px;
 }
@@ -180,8 +262,8 @@ body {
 }
 
 .btn-favoritar.ativo {
-  background-color: #dc3545;
-  border-color: #dc3545;
+  background-color: var(--um-danger);
+  border-color: var(--um-danger);
   color: white;
 }
 
@@ -208,18 +290,18 @@ body {
 
 /* ---- Upload de fotos ---- */
 .upload-area {
-  border: 2.5px dashed #0d6efd;
+  border: 2.5px dashed var(--um-primary);
   border-radius: var(--um-radius);
   padding: 2.5rem 1.5rem;
   text-align: center;
   cursor: pointer;
   transition: var(--um-transition);
-  background: #f0f5ff;
+  background: rgba(31, 45, 92, 0.04);
 }
 
 .upload-area:hover {
-  background: #deeaff;
-  border-color: #0b5ed7;
+  background: rgba(31, 45, 92, 0.08);
+  border-color: var(--um-primary-dark);
 }
 
 .upload-area i {
@@ -278,7 +360,7 @@ body {
   object-fit: cover;
   border-radius: 50%;
   border: 4px solid var(--um-primary);
-  box-shadow: 0 4px 16px rgba(13, 110, 253, 0.25);
+  box-shadow: 0 4px 16px rgba(31, 45, 92, 0.25);
 }
 
 .perfil-avatar-sm {
@@ -316,9 +398,58 @@ body {
 }
 
 .badge-vendido {
-  background-color: #fee2e2;
-  color: #991b1b;
+  background-color: #374151;
+  color: white;
   font-weight: 600;
+}
+
+.badge-categoria {
+  background-color: rgba(238, 113, 36, 0.12);
+  color: var(--um-secondary);
+  font-weight: 600;
+}
+
+/* ---- Navbar ---- */
+.navbar .nav-link {
+  transition: var(--um-transition);
+}
+
+/* Link ativo: sublinhado laranja UNIFAN */
+.navbar-dark .nav-link.active {
+  position: relative;
+}
+.navbar-dark .nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background-color: var(--um-secondary);
+  border-radius: 1px;
+}
+
+/* Logo na navbar */
+.navbar-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ---- Footer UNIFAN ---- */
+.unifan-footer {
+  background-color: var(--um-primary);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin-top: auto;
+}
+
+.unifan-footer p {
+  margin: 0;
 }
 
 /* ---- Página section header ---- */
@@ -342,18 +473,19 @@ body {
   margin: 0;
 }
 
+/* ---- Preço em destaque (página de detalhe) → laranja ---- */
+.text-preco {
+  color: var(--um-secondary);
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
 /* ---- Misc ---- */
 .card-generico {
   border: none;
   border-radius: var(--um-radius);
   box-shadow: var(--um-shadow);
   background: white;
-}
-
-.text-preco {
-  color: var(--um-primary);
-  font-weight: 800;
-  letter-spacing: -0.3px;
 }
 
 .img-placeholder {
@@ -364,11 +496,6 @@ body {
   color: #adb5bd;
 }
 
-/* ---- Navbar ---- */
-.navbar .nav-link {
-  transition: var(--um-transition);
-}
-
 /* ---- Responsivo ---- */
 @media (max-width: 767.98px) {
   .carousel-inner img { height: 240px; }
@@ -377,11 +504,15 @@ body {
   .filtros-card { position: static; }
   .meu-anuncio-foto { width: 72px; height: 72px; }
   .foto-preview-item { width: 80px; height: 80px; }
+  .unifan-footer { text-align: center; }
 }
 
 @media (max-width: 575.98px) {
   .auth-card { border-radius: 14px; }
   .main-content { padding-top: 1rem; }
+  .navbar-logo { height: 32px; }
+  .navbar-brand .brand-text { display: none !important; }
+  .unifan-footer { font-size: 0.8rem; }
 }
 
 /* ---- Formulários ---- */
@@ -393,15 +524,13 @@ body {
 
 .form-control:focus, .form-select:focus {
   border-color: var(--um-primary);
-  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+  box-shadow: 0 0 0 3px rgba(31, 45, 92, 0.15);
 }
 
 .btn {
   border-radius: 9px;
   font-weight: 500;
 }
-
-.btn-primary { font-weight: 600; }
 
 .input-group-text {
   border-radius: 9px 0 0 9px;
