@@ -24,6 +24,22 @@ const upload = multer({
   }
 });
 
+// GET /api/usuarios/me/admin — deve vir antes de /me e /:id
+router.get('/me/admin', autenticar, async (req, res) => {
+  try {
+    const result = await pool.query('SELECT is_admin FROM usuarios WHERE id = $1', [req.usuarioId]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ erro: 'Usuário não encontrado' });
+    }
+
+    return res.json({ is_admin: result.rows[0].is_admin === true });
+  } catch (err) {
+    console.error('Erro ao verificar status admin:', err.message);
+    return res.status(500).json({ erro: 'Erro ao verificar permissões' });
+  }
+});
+
 // GET /api/usuarios/me — deve vir antes de /:id
 router.get('/me', autenticar, async (req, res) => {
   try {

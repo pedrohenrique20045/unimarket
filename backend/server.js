@@ -10,6 +10,7 @@ const authRoutes     = require('./routes/auth');
 const anunciosRoutes = require('./routes/anuncios');
 const usuariosRoutes = require('./routes/usuarios');
 const favoritosRoutes = require('./routes/favoritos');
+const adminRoutes    = require('./routes/admin');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
@@ -42,6 +43,7 @@ app.use('/api/auth',      authRoutes);
 app.use('/api/anuncios',  anunciosRoutes);
 app.use('/api/usuarios',  usuariosRoutes);
 app.use('/api/favoritos', favoritosRoutes);
+app.use('/api/admin',     adminRoutes);
 
 // Tratamento global de erros (multer, validações, etc.)
 app.use((err, req, res, next) => {

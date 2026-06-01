@@ -57,6 +57,10 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ erro: 'Email ou senha incorretos' });
     }
 
+    if (usuario.banido) {
+      return res.status(403).json({ erro: 'Sua conta foi suspensa. Entre em contato com o administrador.' });
+    }
+
     const token = jwt.sign({ id: usuario.id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
     return res.json({
