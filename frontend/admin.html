@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniMarket - Dashboard Admin</title>
+  <link rel="icon" type="image/png" href="/img/logo-unifan.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <main class="container-xl main-content">
+
+    <div class="page-header mb-4">
+      <div>
+        <h1 class="section-title">🛡️ Dashboard Administrativo</h1>
+        <p class="text-muted mb-0 small mt-1">Visão geral da plataforma UniMarket</p>
+      </div>
+    </div>
+
+    <div id="alert-container"></div>
+
+    <div id="loading" class="text-center py-5">
+      <div class="spinner-border text-primary" role="status"></div>
+      <p class="mt-3 text-muted">Carregando estatísticas...</p>
+    </div>
+
+    <div id="dashboard-content" class="d-none">
+
+      <!-- Cards de estatísticas -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-lg-3">
+          <div class="admin-stat-card" style="background: linear-gradient(135deg, #1F2D5C, #2a3d7a)">
+            <div class="stat-number" id="stat-usuarios">—</div>
+            <div class="stat-label">Usuários cadastrados</div>
+            <div class="mt-2">
+              <span class="badge bg-white bg-opacity-25 text-white" id="stat-usuarios-recentes"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="admin-stat-card" style="background: linear-gradient(135deg, #EE7124, #d4621d)">
+            <div class="stat-number" id="stat-ativos">—</div>
+            <div class="stat-label">Anúncios ativos</div>
+            <div class="mt-2">
+              <span class="badge bg-white bg-opacity-25 text-white" id="stat-anuncios-recentes"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="admin-stat-card" style="background: linear-gradient(135deg, #059669, #047857)">
+            <div class="stat-number" id="stat-vendidos">—</div>
+            <div class="stat-label">Anúncios vendidos</div>
+            <div class="mt-2">
+              <span class="badge bg-white bg-opacity-25 text-white" id="stat-total-anuncios"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="admin-stat-card" style="background: linear-gradient(135deg, #DC2626, #b91c1c)">
+            <div class="stat-number" id="stat-banidos">—</div>
+            <div class="stat-label">Usuários banidos</div>
+            <div class="mt-2">
+              <span class="badge bg-white bg-opacity-25 text-white" id="stat-favoritos"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categorias populares + Ações rápidas -->
+      <div class="row g-3">
+        <div class="col-lg-7">
+          <div class="card-generico p-4 h-100">
+            <h5 class="fw-bold mb-3">
+              <i class="bi bi-bar-chart-fill me-2 text-primary"></i>Categorias mais populares
+            </h5>
+            <div id="categorias-container">
+              <p class="text-muted small">Carregando...</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card-generico p-4 h-100 d-flex flex-column">
+            <h5 class="fw-bold mb-3">
+              <i class="bi bi-lightning-fill me-2" style="color: var(--um-secondary)"></i>Ações rápidas
+            </h5>
+            <div class="d-flex flex-column gap-3 mt-2 flex-fill justify-content-center">
+              <a href="/admin-usuarios.html" class="btn btn-primary py-3 fw-semibold">
+                <i class="bi bi-people-fill me-2"></i>Gerenciar Usuários
+              </a>
+              <a href="/admin-anuncios.html" class="btn btn-warning py-3 fw-semibold">
+                <i class="bi bi-collection-fill me-2"></i>Gerenciar Anúncios
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="unifan-footer">
+    <p>© 2026 UniMarket - Projeto acadêmico desenvolvido por Pedro Henrique Silvano de Morais</p>
+    <p>Centro Universitário Alfredo Nasser - Engenharia de Software</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

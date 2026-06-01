@@ -73,6 +73,11 @@ function renderNavbar(paginaAtiva) {
                 <i class="bi bi-heart me-1"></i>Favoritos
               </a>
             </li>
+            <li class="nav-item d-none" id="admin-nav-item">
+              <a class="nav-link px-3 rounded nav-link-admin ${['admin','admin-usuarios','admin-anuncios'].includes(paginaAtiva) ? 'active bg-white bg-opacity-10 fw-semibold' : ''}" href="/admin.html">
+                <i class="bi bi-shield-fill me-1"></i>Admin
+              </a>
+            </li>
           </ul>
           <div class="d-flex align-items-center gap-3 mt-2 mt-lg-0">
             <a href="/criar-anuncio.html" class="btn btn-warning fw-bold px-3 shadow-sm">
@@ -109,6 +114,52 @@ function renderNavbar(paginaAtiva) {
         </div>
       </div>
     </nav>`;
+  initAdminNav();
+}
+
+async function initAdminNav() {
+  const token = localStorage.getItem('token');
+  if (!token) return;
+  try {
+    const res = await fetch('/api/usuarios/me/admin', {
+      headers: { Authorization: 'Bearer ' + token }
+    });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data.is_admin) {
+      const item = document.getElementById('admin-nav-item');
+      if (item) item.classList.remove('d-none');
+    }
+  } catch {
+    // não crítico — falha silenciosa
+  }
+}
+
+async function exigirAdmin() {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    window.location.href = 'login.html';
+    return false;
+  }
+  try {
+    const res = await fetch('/api/usuarios/me/admin', {
+      headers: { Authorization: 'Bearer ' + token }
+    });
+    if (!res.ok) {
+      window.location.href = 'home.html';
+      return false;
+    }
+    const data = await res.json();
+    if (!data.is_admin) {
+      alert('Acesso negado: apenas administradores');
+      window.location.href = 'home.html';
+      return false;
+    }
+    return true;
+  } catch {
+    window.location.href = 'home.html';
+    return false;
+  }
 }
 
 function mostrarAlerta(alvo, mensagem, tipo) {

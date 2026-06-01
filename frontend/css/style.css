@@ -537,3 +537,85 @@ body:not(.auth-page) {
   background: #f8f9fa;
   color: #6c757d;
 }
+
+/* ---- Admin Dashboard ---- */
+.admin-stat-card {
+  border-radius: var(--um-radius);
+  box-shadow: var(--um-shadow);
+  color: white;
+  padding: 1.5rem 1.25rem;
+  transition: var(--um-transition);
+  height: 100%;
+}
+
+.admin-stat-card:hover {
+  box-shadow: var(--um-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.stat-number {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -1.5px;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  opacity: 0.88;
+  margin-top: 0.4rem;
+}
+
+/* Admin badges */
+.badge-admin {
+  background-color: rgba(31, 45, 92, 0.12) !important;
+  color: var(--um-primary) !important;
+  font-weight: 600;
+}
+
+.badge-banido {
+  background-color: rgba(220, 38, 38, 0.12) !important;
+  color: var(--um-danger) !important;
+  font-weight: 600;
+}
+
+.badge-ativo-admin {
+  background-color: #d1fae5;
+  color: #065f46;
+  font-weight: 600;
+}
+
+/* Admin table */
+.admin-table thead th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #6c757d;
+  font-weight: 600;
+  border-bottom: 2px solid #e9ecef;
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
+.admin-table tbody tr:hover {
+  background-color: rgba(31, 45, 92, 0.04);
+}
+
+.admin-table-actions {
+  white-space: nowrap;
+}
+
+/* Nav link admin — laranja no hover/ativo */
+.nav-link-admin:hover {
+  color: var(--um-secondary) !important;
+}
+
+.nav-link-admin.active {
+  color: var(--um-secondary) !important;
+}
+
+/* Responsivo mobile */
+@media (max-width: 767.98px) {
+  .stat-number { font-size: 2rem; }
+  .admin-stat-card { padding: 1.1rem 1rem; }
+}
