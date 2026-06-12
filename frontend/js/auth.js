@@ -56,7 +56,6 @@ function renderNavbar(paginaAtiva) {
       <div class="container-xl">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/home.html">
           <img src="/img/logo-unifan.png" class="navbar-logo" alt="UNIFAN">
-          <span class="fw-bold fs-5 brand-text">FanMarket</span>
         </a>
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
           <span class="navbar-toggler-icon"></span>
