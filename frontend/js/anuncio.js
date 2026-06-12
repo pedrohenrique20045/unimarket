@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // WhatsApp
     const tel = (anuncio.vendedor_telefone || '').replace(/\D/g, '');
-    const msg = encodeURIComponent(`Olá! Vi seu anúncio "${anuncio.titulo}" no UniMarket e tenho interesse. Podemos conversar?`);
+    const msg = encodeURIComponent(`Olá! Vi seu anúncio "${anuncio.titulo}" no FanMarket e tenho interesse. Podemos conversar?`);
     const linkWpp = `https://wa.me/55${tel}?text=${msg}`;
 
     // Status badge
