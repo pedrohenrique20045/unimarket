@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="d-flex flex-wrap gap-2" id="fotos-existentes">
           ${(anuncio.fotos || []).map(f => `
             <div class="foto-preview-item">
-              <img src="/uploads/${f.caminho}" alt="Foto atual">
+              <img src="${fotoAnuncioUrl(f.caminho)}" alt="Foto atual">
             </div>`).join('') || '<p class="text-muted small">Nenhuma foto.</p>'}
         </div>
       </div>

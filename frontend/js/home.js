@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       grid.innerHTML = lista.map(a => `
         <div class="col-sm-6 col-xl-4">
           <a href="/anuncio.html?id=${a.id}" class="anuncio-card card h-100">
-            ${a.foto_principal
-              ? `<img src="/uploads/${a.foto_principal}" class="card-img-top" alt="${escHtml(a.titulo)}">`
+            ${fotoAnuncioUrl(a.foto_principal)
+              ? `<img src="${fotoAnuncioUrl(a.foto_principal)}" class="card-img-top" alt="${escHtml(a.titulo)}">`
               : `<div class="card-img-placeholder"><i class="bi bi-image"></i></div>`}
             <div class="card-body pb-2">
               <p class="preco mb-1">${formatarPreco(a.preco)}</p>

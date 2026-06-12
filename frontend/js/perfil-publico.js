@@ -54,8 +54,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                  ${anuncios.map(a => `
                    <div class="col-sm-6">
                      <a href="/anuncio.html?id=${a.id}" class="anuncio-card card h-100">
-                       ${a.foto_principal
-                         ? `<img src="/uploads/${a.foto_principal}" class="card-img-top" alt="${a.titulo}">`
+                       ${fotoAnuncioUrl(a.foto_principal)
+                         ? `<img src="${fotoAnuncioUrl(a.foto_principal)}" class="card-img-top" alt="${a.titulo}">`
                          : `<div class="card-img-placeholder"><i class="bi bi-image"></i></div>`}
                        <div class="card-body">
                          <p class="preco mb-1">${formatarPreco(a.preco)}</p>

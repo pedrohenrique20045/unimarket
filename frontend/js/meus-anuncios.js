@@ -40,8 +40,8 @@ function renderLista(container, lista, mostrarAcoes) {
   container.innerHTML = lista.map(a => `
     <div class="meu-anuncio-card p-3 mb-3" id="card-${a.id}">
       <div class="d-flex gap-3 align-items-start">
-        ${a.foto_principal
-          ? `<img src="/uploads/${a.foto_principal}" class="meu-anuncio-foto" alt="${a.titulo}">`
+        ${fotoAnuncioUrl(a.foto_principal)
+          ? `<img src="${fotoAnuncioUrl(a.foto_principal)}" class="meu-anuncio-foto" alt="${a.titulo}">`
           : `<div class="meu-anuncio-foto img-placeholder rounded"><i class="bi bi-image fs-4"></i></div>`}
         <div class="flex-grow-1 overflow-hidden">
           <div class="d-flex justify-content-between align-items-start flex-wrap gap-2">

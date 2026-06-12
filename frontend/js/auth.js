@@ -35,7 +35,12 @@ function fotoPerfilUrl(caminho, nome) {
     const inicial = encodeURIComponent((nome || 'U').charAt(0).toUpperCase());
     return `https://ui-avatars.com/api/?background=0d6efd&color=fff&bold=true&name=${inicial}`;
   }
-  return `/uploads/${caminho}`;
+  return caminho.startsWith('http') ? caminho : `/uploads/${caminho}`;
+}
+
+function fotoAnuncioUrl(caminho) {
+  if (!caminho) return null;
+  return caminho.startsWith('http') ? caminho : `/uploads/${caminho}`;
 }
 
 function renderNavbar(paginaAtiva) {

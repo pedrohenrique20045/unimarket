@@ -32,8 +32,8 @@ async function carregar() {
       <div class="col-sm-6 col-lg-4 col-xl-3" id="fav-${a.id}">
         <div class="card h-100" style="border:none;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,0.08);">
           <a href="/anuncio.html?id=${a.id}" class="text-decoration-none text-dark">
-            ${a.foto_principal
-              ? `<img src="/uploads/${a.foto_principal}" class="card-img-top"
+            ${fotoAnuncioUrl(a.foto_principal)
+              ? `<img src="${fotoAnuncioUrl(a.foto_principal)}" class="card-img-top"
                       style="height:185px;object-fit:cover;border-radius:14px 14px 0 0" alt="${a.titulo}">`
               : `<div class="img-placeholder" style="height:185px;border-radius:14px 14px 0 0">
                    <i class="bi bi-image" style="font-size:3rem"></i>

@@ -1,25 +1,16 @@
 const express = require('express');
 const multer  = require('multer');
-const path    = require('path');
 const { pool } = require('../database');
 const autenticar = require('../middleware/autenticar');
+const { storage } = require('../config/cloudinary');
 
 const router = express.Router();
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, path.join(__dirname, '../uploads')),
-  filename:    (req, file, cb) => {
-    const ext = path.extname(file.originalname).toLowerCase();
-    cb(null, `${Date.now()}-${Math.random().toString(36).slice(2)}${ext}`);
-  }
-});
 
 const upload = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
-    const ext = path.extname(file.originalname).toLowerCase();
-    if (['.jpg', '.jpeg', '.png', '.webp'].includes(ext)) cb(null, true);
+    if (/^image\/(jpeg|png|webp)$/.test(file.mimetype)) cb(null, true);
     else cb(new Error('Formato inválido. Use JPG, PNG ou WEBP'));
   }
 });
@@ -135,7 +126,7 @@ router.post('/', autenticar, upload.array('fotos', 5), async (req, res) => {
     for (let i = 0; i < req.files.length; i++) {
       await pool.query(
         'INSERT INTO fotos_anuncio (anuncio_id, caminho, ordem) VALUES ($1, $2, $3)',
-        [anuncioId, req.files[i].filename, i]
+        [anuncioId, req.files[i].path, i]
       );
     }
 
@@ -201,7 +192,7 @@ router.put('/:id', autenticar, upload.array('fotos', 5), async (req, res) => {
       for (let i = 0; i < req.files.length; i++) {
         await pool.query(
           'INSERT INTO fotos_anuncio (anuncio_id, caminho, ordem) VALUES ($1, $2, $3)',
-          [anuncio.id, req.files[i].filename, i]
+          [anuncio.id, req.files[i].path, i]
         );
       }
     }

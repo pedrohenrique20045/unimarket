@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const itens = fotos.length
       ? fotos.map((f, i) => `
           <div class="carousel-item ${i === 0 ? 'active' : ''}">
-            <img src="/uploads/${f.caminho}" class="d-block w-100" alt="Foto ${i + 1}">
+            <img src="${fotoAnuncioUrl(f.caminho)}" class="d-block w-100" alt="Foto ${i + 1}">
           </div>`).join('')
       : `<div class="carousel-item active">
            <div class="carousel-placeholder"><i class="bi bi-image" style="font-size:5rem;color:#adb5bd"></i></div>
